@@ -1,4 +1,5 @@
-(function(){
+(function(angular){
+"use strict";
 	function controller($scope,heroService){
 		var ctrl = this;
 		ctrl.topHeroes = [];

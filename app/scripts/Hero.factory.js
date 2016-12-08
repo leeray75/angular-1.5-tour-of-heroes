@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function HeroFactory(){
 		var options = {
 			id: null,

@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function controller($scope,$document,$timeout,heroService){
 		var ctrl = this;
 		ctrl.heroes = ctrl.heroes || [];

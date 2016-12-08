@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function editHeroModalController($scope,$element,$attrs,$uibModal,$document,heroService){
 		var ctrl = this;
 		var open = function(){

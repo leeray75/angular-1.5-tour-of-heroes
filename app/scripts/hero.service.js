@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function HeroService($http,$q,$timeout,Hero,filterFilter){
 		var $this = this;
 		$http.defaults.headers.common

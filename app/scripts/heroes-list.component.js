@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function controller($scope,$element,$attrs,$state,heroService){
 		var ctrl = this;
 			ctrl.heroes = [];

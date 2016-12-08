@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function controller(Hero){
 		var ctrl = this;
 		ctrl.newHero = Hero.create();

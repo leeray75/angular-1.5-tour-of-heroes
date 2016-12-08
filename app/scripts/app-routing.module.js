@@ -1,5 +1,5 @@
-(function(){
-
+(function(angular){
+"use strict";
 	function appRouting($stateProvider,$urlRouterProvider){
 
 		var dashboardState = {

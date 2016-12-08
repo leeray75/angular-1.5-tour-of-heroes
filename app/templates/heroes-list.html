@@ -4,7 +4,7 @@
 <section class="heroes-list">
 	<h2>My Heroes</h2>
 	<ul class="heroes">
-	   <li ng-repeat="hero in $ctrl.heroes" ng-class="{ selected: $ctrl.hero===$ctrl.selectedHero}" ng-click="$ctrl.onSelect(hero);">
+	   <li ng-repeat="hero in $ctrl.heroes" ng-class="{ selected: hero===$ctrl.selectedHero}" ng-click="$ctrl.onSelect(hero);">
 	   <span class="badge">{{ hero.id }}</span> <span class="hero-name">{{ hero.name }}</span>  
 	   <button ng-click="$ctrl.delete(hero); $event.stopPropagation();" class="delete btn btn-danger">x</button> 
 	   </li>
