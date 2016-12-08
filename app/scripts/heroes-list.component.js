@@ -17,7 +17,6 @@
 			}
 
 			ctrl.onSelect = function(hero){
-				console.log("select hero:",hero);
 				ctrl.selectedHero = hero;
 			}
 			ctrl.delete = function(hero){
@@ -31,17 +30,6 @@
 				function(error){
 					console.warn("delete error:",error);
 				});
-			}
-
-			ctrl.add = function(prop,value){
-				var name = value.trim();
-				if(!name){ return; }
-				heroService.create(name).then(function(response){
-					var hero = response.data;
-					ctrl.heroes.push(hero);
-					ctrl.selectedHero == null;
-				})
-				ctrl.heroName = "";
 			}
 
 			ctrl.gotoDetail = function(){

@@ -6,7 +6,6 @@
 		this.$onInit = function(){
 			var id = parseInt($state.params.id);
 			heroService.getHero(id).then(function(hero){
-				console.log("hero:", hero);
 				ctrl.hero = hero;
 			},
 			function(error){

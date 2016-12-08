@@ -7,3 +7,6 @@
 	<li>Updated hero service to use $localStorage in place of Angular 2's InMemoryWebApiModule</li>
 	<li>Added Bootstrap 3</li>
 </ul>
+<p>
+This project is still a work in progress.
+</p>
