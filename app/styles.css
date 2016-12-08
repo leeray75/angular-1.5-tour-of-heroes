@@ -53,7 +53,7 @@ nav a.active:hover{
 #heroes-dashboard .add-hero-container{
   margin-top: 10px;
 }
-
+#heroes-dashboard .add-hero-container .input-container{ display: inline-block; width: 50%; }
 #heroes-dashboard .heroes-row{}
 #heroes-dashboard .heroes-row .hero-column{
 	text-decoration: none;
