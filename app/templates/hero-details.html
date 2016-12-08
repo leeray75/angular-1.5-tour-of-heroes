@@ -1,11 +1,15 @@
-<div ng-if="hero">
-  <h2>{{hero.name}} details!</h2>
-  <div>
-    <label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input type="text" ng-model="hero.name" placeholder="name" />
+
+<div ng-if="$ctrl.hero" class="container">
+	<h2>{{$ctrl.hero.name}} details!</h2>
+  <div class="form-group">
+    <label>id:</label> <span>{{$ctrl.hero.id}}</span>
   </div>
-  <button ng-click="goBack()">Back</button>
-  <button ng-click="save()">Save</button>
+  <div class="form-group">
+    <label>name: </label>
+    <input type="text" ng-model="$ctrl.hero.name" placeholder="name" class="form-control" />
+  </div>
+  <div class="buttons-container form-group">
+	  <button ng-click="$ctrl.goBack()" class="btn btn-default">Back</button>
+	  <button ng-click="$ctrl.save()" class="btn btn-primary">Save</button>
+  </div>
 </div>

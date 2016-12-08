@@ -36,8 +36,9 @@
 			if($localStorage.heroes){
 				$localStorage.heroes = $localStorage.heroes.filter(function(hero){
 					return hero.id !== id;
-				})
-				deferred.resolve({ status: 'success', heroes: angular.copy($localStorage.heroes) });
+				});
+
+				deferred.resolve({ status: 'success', message: 'Hero Removed', id: id });
 			}
 			else{
 				deferred.reject({ status: 'error', message: 'No Heroes'});
@@ -91,7 +92,8 @@
 			var promise = deferred.promise;
 			
 			if($localStorage.heroes && $localStorage.heroes.length>0){
-				deferred.resolve(angular.copy($localStorage.heroes));
+				heroes = angular.copy($localStorage.heroes);
+				deferred.resolve(heroes);
 			}
 			else{
 				var req = {

@@ -1,10 +1,11 @@
 (function(){
 	function controller($scope,heroService){
-			$scope.heroes = [];
+		var ctrl = this;
+			ctrl.heroes = [];
 			this.$onInit = function(){
 				heroService.getHeroes().then(function(data){
 					var heroes = data;
-					$scope.heroes = heroes.splice(1,4);
+					ctrl.heroes = heroes.splice(1,4);
 				})
 			}
 		}

@@ -1,54 +1,63 @@
 (function(){
 
-	function controller($scope,$state,heroService){
-			$scope.heroes = [];
-			$scope.selectedHero = null;
-			$scope.heroName = '';
-			this.getHeroes = function(){
+	function controller($scope,$element,$attrs,$state,heroService){
+		var ctrl = this;
+			ctrl.heroes = [];
+			ctrl.selectedHero = null;
+			ctrl.heroName = '';
+			$scope.newHero = {
+				id: null,
+				name: ''
+			};
+			function getHeroes(){
 				heroService.getHeroes().then(function(data){
 					var heroes = data;
-					$scope.heroes = heroes;
+					ctrl.heroes = heroes;
 				})
 			}
 
-			
-			$scope.onSelect = function(hero){
-				$scope.selectedHero = hero;
+			ctrl.onSelect = function(hero){
+				console.log("select hero:",hero);
+				ctrl.selectedHero = hero;
 			}
-			$scope.delete = function(hero){
+			ctrl.delete = function(hero){
 				heroService.delete(hero.id).then(function(response){
-					$scope.heroes = $scope.heroes.filter(function(_hero){
-						return _hero !== hero;
-					})
+					var id = response.id;
+					ctrl.heroes = ctrl.heroes.filter(function(hero){
+						return hero.id !== id;
+					});
+
 				},
 				function(error){
 					console.warn("delete error:",error);
 				});
 			}
 
-			$scope.add = function(name){
-				name = name.trim();
+			ctrl.add = function(prop,value){
+				var name = value.trim();
 				if(!name){ return; }
 				heroService.create(name).then(function(response){
-					$scope.heroes.push(response.data);
-					$scope.selectedHero == null;
+					var hero = response.data;
+					ctrl.heroes.push(hero);
+					ctrl.selectedHero == null;
 				})
+				ctrl.heroName = "";
 			}
 
-			$scope.gotoDetail = function(){
-				$state.go('hero-details', { id: $scope.selectedHero.id });
+			ctrl.gotoDetail = function(){
+				$state.go('hero-details', { id: ctrl.selectedHero.id });
 			}
 
 			this.$onInit = function(){
-				this.getHeroes();
-			}.bind(this);
+				getHeroes();
+			};
 		}
 
 
 	angular.module('tourOfHeroesApp')
 	.component('heroesList',{
 		templateUrl: '../templates/heroes-list.html',
-		controller: ['$scope','$state','heroService',controller]
+		controller: ['$scope','$element','$attrs','$state','heroService',controller]
 	});
 	
 
