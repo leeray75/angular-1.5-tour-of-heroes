@@ -7,9 +7,6 @@
 	<li>Updated hero service to use save heroes with local variable in place of Angular 2's InMemoryWebApiModule</li>
 	<li>Added Bootstrap 3</li>
 </ul>
-<p>
-This project is still a work in progress.
-</p>
 
 <h2>Instructions</h2>
 <ol>
