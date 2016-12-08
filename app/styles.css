@@ -46,9 +46,14 @@ nav a.active:hover{
 	 }
 }
 #heroes-dashboard{}
+#heroes-dashboard #search-component,
 #heroes-dashboard .add-hero-container{
 	text-align: center;
 }
+#heroes-dashboard .add-hero-container{
+  margin-top: 10px;
+}
+
 #heroes-dashboard .heroes-row{}
 #heroes-dashboard .heroes-row .hero-column{
 	text-decoration: none;
@@ -166,6 +171,7 @@ nav a.active:hover{
   padding: 5px;
   margin: 0;
   cursor: pointer;
+  text-align: left;
 }
 #search-component ul.search-results > li:hover{
   background: #ccc;
