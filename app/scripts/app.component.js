@@ -7,7 +7,7 @@
 	}
 	angular.module('tourOfHeroesApp')
 	.component('appComponent',{
-		templateUrl: '../templates/appComponent.html',
+		templateUrl: 'templates/appComponent.html',
 		controller: ['$scope','$element','$attrs',appComponentController]
 	})
 })(window.angular);

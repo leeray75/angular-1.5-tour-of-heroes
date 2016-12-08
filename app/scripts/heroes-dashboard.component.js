@@ -30,7 +30,7 @@
 	
 	angular.module('tourOfHeroesApp')
 	.component('heroesDashboard',{
-		templateUrl: '../templates/heroes-dashboard.html',
+		templateUrl: 'templates/heroes-dashboard.html',
 		controller: ['$scope','heroService',controller]
 	});
 

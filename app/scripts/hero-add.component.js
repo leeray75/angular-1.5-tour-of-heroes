@@ -11,7 +11,7 @@
 
 	angular.module('tourOfHeroesApp')
 	.component('heroAdd',{
-		templateUrl: '../templates/hero-add.html',
+		templateUrl: 'templates/hero-add.html',
 		controller: ['Hero',controller],
 		bindings: {
 			onSave: '&'

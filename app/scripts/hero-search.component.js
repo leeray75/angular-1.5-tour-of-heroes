@@ -40,7 +40,7 @@
 
 	angular.module('tourOfHeroesApp')
 	.component('heroSearch',{
-		templateUrl: '../templates/hero-search.html',
+		templateUrl: 'templates/hero-search.html',
 		controller: ['$scope','$document','$state','$timeout','heroService',controller],
 		bindings: {
 			'showList': '<',

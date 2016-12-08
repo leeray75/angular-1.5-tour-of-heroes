@@ -55,7 +55,7 @@
 
 	angular.module('tourOfHeroesApp')
 	.component('editHeroModal',{
-		templateUrl: '../templates/edit-hero-modal.html',
+		templateUrl: 'templates/edit-hero-modal.html',
 		controller: ['$scope','$element','$attrs','$uibModal','$document','heroService',editHeroModalController],
 		bindings: {
 			edit: '=',

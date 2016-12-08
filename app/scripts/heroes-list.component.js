@@ -54,7 +54,7 @@
 
 	angular.module('tourOfHeroesApp')
 	.component('heroesList',{
-		templateUrl: '../templates/heroes-list.html',
+		templateUrl: 'templates/heroes-list.html',
 		controller: ['$scope','$element','$attrs','$state','heroService',controller]
 	});
 	
