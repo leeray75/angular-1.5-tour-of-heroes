@@ -33,6 +33,19 @@
 				$state.go('hero-details', { id: ctrl.selectedHero.id });
 			}
 
+			ctrl.search = function(searchTerm){
+				ctrl.selectedHero = null;
+				if(searchTerm.trim() === ""){
+					getHeroes();
+				}
+				else{
+					heroService.search(searchTerm)
+					.then(function(response){
+						ctrl.heroes = response;
+					})
+				}
+			}
+
 			this.$onInit = function(){
 				getHeroes();
 			};

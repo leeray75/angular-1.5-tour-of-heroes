@@ -143,3 +143,26 @@ nav a.active:hover{
 #hero-details button{
 	margin-right: 25px;
 }
+
+#search-component{}
+#search-component .input-container{
+  display: inline-block;
+}
+#search-component .results-container{ display: block; position: relative; }
+#search-component ul.search-results{
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: block;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 0;
+}
+#search-component ul.search-results > li{
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  margin: 0;
+}

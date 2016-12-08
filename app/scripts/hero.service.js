@@ -1,6 +1,6 @@
 (function(){
 
-	function HeroService($http,$q,Hero){
+	function HeroService($http,$q,$timeout,Hero,filterFilter){
 		var $this = this;
 		$http.defaults.headers.common
 		var heroesHeaders = {
@@ -108,9 +108,18 @@
 
 			return promise;
 		}
+
+		heroService.search = function(term){
+			var deferred = $q.defer();
+			var promise = deferred.promise;
+			$timeout(function(){
+				deferred.resolve(filterFilter($this.heroes,term));
+			},100)
+			return promise;
+		}
 		return heroService;
 	} // end HeroService
 
-	angular.module('tourOfHeroesApp').factory('heroService',['$http','$q','Hero',HeroService]);
+	angular.module('tourOfHeroesApp').factory('heroService',['$http','$q','$timeout','Hero','filterFilter',HeroService]);
 
 })(window.angular);
