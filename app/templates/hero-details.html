@@ -1,0 +1,11 @@
+<div ng-if="hero">
+  <h2>{{hero.name}} details!</h2>
+  <div>
+    <label>id: </label>{{hero.id}}</div>
+  <div>
+    <label>name: </label>
+    <input type="text" ng-model="hero.name" placeholder="name" />
+  </div>
+  <button ng-click="goBack()">Back</button>
+  <button ng-click="save()">Save</button>
+</div>

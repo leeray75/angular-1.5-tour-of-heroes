@@ -1,0 +1,119 @@
+a {
+  text-decoration: none;
+}
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+h3 {
+  text-align: center; margin-bottom: 0;
+}
+h4 {
+  position: relative;
+}
+
+nav button{
+	margin-left: 15px;
+}
+
+nav a{
+	cursor: pointer;
+}
+nav a.active:hover{
+	cursor: default;
+	text-decoration: none;
+}
+
+ nav .navbar-collapse,
+ nav .navbar-collapse.in{
+ 	overflow: hidden;
+ }
+
+ @media (min-width: 768px) {
+ 	nav .container,
+ 	nav .container-fluid,
+	nav .container > .navbar-collapse,
+  	nav .container-fluid > .navbar-collapse{ 
+		padding-left: 0;
+		padding-right: 0;
+	 }
+	 nav .navbar-collapse{
+	 	transition: none;
+	 }
+}
+#heroes-dashboard{}
+#heroes-dashboard .heroes-row{}
+#heroes-dashboard .heroes-row .hero-column{
+	text-decoration: none;
+	padding: 5px;
+}
+#heroes-dashboard .module {
+  padding: 20px;
+  text-align: center;
+  color: #eee;
+  max-height: 120px;
+  min-width: 120px;
+  background-color: #607D8B;
+  border-radius: 5px;
+}
+#heroes-dashboard .module:hover {
+  background-color: #EEE;
+  cursor: pointer;
+  color: #607d8b;
+}
+
+@media (max-width: 768px) {
+	#heroes-dashboard  .module {
+	    font-size: 10px;
+	    max-height: 75px; 
+	}
+}
+
+
+#heroes-list .heroes {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em; }
+  #heroes-list .heroes li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.7em;
+    border-radius: 4px; }
+    #heroes-list .heroes li:hover {
+      color: #607D8B;
+      background-color: #DDD;
+      left: .1em; }
+  #heroes-list .heroes li.selected {
+    background-color: #CFD8DC !important;
+    color: white; }
+    #heroes-list .heroes li.selected:hover {
+      background-color: #BBD8DC !important;
+      color: white; }
+  #heroes-list .heroes .text {
+    position: relative;
+    top: -3px; }
+  #heroes-list .heroes .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px; }
+  #heroes-list .heroes button.delete {
+    float: right;
+    margin-top: 2px;
+    margin-right: .8em;
+    background-color: gray !important;
+    color: white; }

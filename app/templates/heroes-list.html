@@ -1,0 +1,19 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+   <li ng-repeat="hero in heroes" ng-class="{ selected: hero===selectedHero}" ng-click="onSelect(hero)">
+   <span class="badge">{{hero.id}}</span> <span>{{hero.name}}</span>  
+   <button class="delete" ng-click="delete(hero)">x</button> 
+   </li>
+</ul>
+<div ng-if="selectedHero">
+   <h2>
+      {{selectedHero.name | uppercase}} is my hero
+   </h2>
+   <button ng-click="gotoDetail()">View Details</button>
+</div>
+<div>
+   <label>Hero name:</label> <input type="text" ng-model="heroName" />
+   <button ng-click="add(heroName); heroName=''">
+   Add
+   </button>
+</div>

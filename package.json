@@ -1,0 +1,26 @@
+{
+  "name": "angular-1.5-tour-of-heroes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "keywords": [
+    "AngularJS"
+  ],
+  "author": "Raymond Lee",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-animate": "^1.5.9",
+    "angular-sanitize": "^1.5.9",
+    "angular-ui-bootstrap": "^2.3.0",
+    "angular-ui-router": "^0.3.2"
+  },
+  "devDependencies": {
+    "lite-server": "^2.2.2",
+    "ng-storage": "^0.3.2"
+  }
+}
