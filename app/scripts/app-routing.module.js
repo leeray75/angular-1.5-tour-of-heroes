@@ -1,11 +1,7 @@
 (function(){
 
-	function appRouting($stateProvider){
-		var defaultState = {
-			name: 'default',
-			url: '',
-			default: 'dashboard'
-		}
+	function appRouting($stateProvider,$urlRouterProvider){
+
 		var dashboardState = {
 			name: 'dashboard',
 			url: '/dashboard',
@@ -23,11 +19,10 @@
 			template: '<hero-details id="hero-details"></hero-details>'
 		}
 
-		$stateProvider.state(defaultState);
 		$stateProvider.state(dashboardState);
 		$stateProvider.state(heroesState);
 		$stateProvider.state(heroDetailsState);
+		$urlRouterProvider.when('', '/dashboard');
 	}
-	angular.module('tourOfHeroesApp').config(['$stateProvider',appRouting]);
-
+	angular.module('tourOfHeroesApp').config(['$stateProvider','$urlRouterProvider',appRouting]);
 })(window.angular);

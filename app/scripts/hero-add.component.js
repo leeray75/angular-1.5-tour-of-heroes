@@ -1,23 +1,21 @@
 (function(){
 
-	function controller($scope){
+	function controller(Hero){
 		var ctrl = this;
-		ctrl.heroName = '';
+		ctrl.newHero = Hero.create();
 		ctrl.save = function(){
-			ctrl.onSave({value: ctrl.heroName});
-			ctrl.heroName = "";
+			ctrl.onSave({value: ctrl.newHero});
+			ctrl.newHero = Hero.create();
 		}
 	}
-
 
 	angular.module('tourOfHeroesApp')
 	.component('heroAdd',{
 		templateUrl: '../templates/hero-add.html',
-		controller: ['$scope',controller],
+		controller: ['Hero',controller],
 		bindings: {
 			onSave: '&'
 		}
 	});
-	
 
 })(window.angular);

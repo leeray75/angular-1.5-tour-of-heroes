@@ -1,15 +1,20 @@
 
-<div ng-if="$ctrl.hero" class="container">
+<div ng-if="$ctrl.hero" class="container-fluid">
 	<h2>{{$ctrl.hero.name}} details!</h2>
-  <div class="form-group">
+  <div>
     <label>id:</label> <span>{{$ctrl.hero.id}}</span>
   </div>
-  <div class="form-group">
-    <label>name: </label>
-    <input type="text" ng-model="$ctrl.hero.name" placeholder="name" class="form-control" />
+  <div>
+    <label>Name: </label>
+    <span>{{$ctrl.hero.name}}</span>
   </div>
-  <div class="buttons-container form-group">
+  <div ng-show="$ctrl.hero.location">
+    <label>Location: </label>
+    <span>{{$ctrl.hero.location}}</span>
+  </div>
+  <div class="buttons-container">
 	  <button ng-click="$ctrl.goBack()" class="btn btn-default">Back</button>
-	  <button ng-click="$ctrl.save()" class="btn btn-primary">Save</button>
+	  <button ng-click="$ctrl.edit()" class="btn btn-primary">Edit</button>
   </div>
 </div>
+<edit-hero-modal hero="$ctrl.hero" edit="$ctrl.isEdit" save="$ctrl.save('hero',hero)"></edit-hero-modal>

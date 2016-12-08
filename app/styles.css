@@ -46,6 +46,9 @@ nav a.active:hover{
 	 }
 }
 #heroes-dashboard{}
+#heroes-dashboard .add-hero-container{
+	text-align: center;
+}
 #heroes-dashboard .heroes-row{}
 #heroes-dashboard .heroes-row .hero-column{
 	text-decoration: none;
@@ -61,7 +64,7 @@ nav a.active:hover{
   border-radius: 5px;
 }
 #heroes-dashboard .module:hover {
-  background-color: #EEE;
+  background-color: #ccc;
   cursor: pointer;
   color: #607d8b;
 }

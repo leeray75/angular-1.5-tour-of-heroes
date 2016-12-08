@@ -1,27 +1,24 @@
 (function(){
 
-	function HeroService($http,$q,$localStorage){
+	function HeroService($http,$q,Hero){
+		var $this = this;
 		$http.defaults.headers.common
 		var heroesHeaders = {
 			'Content-Type': 'application/json'
 		}
 		var heroService = {};
-
-		heroService.create = function(name){
+		$this.heroes = [];
+		heroService.create = function(heroData){
 			var deferred = $q.defer();
 			var promise = deferred.promise;
-			if($localStorage.heroes){
-				var hero = {
-					id: null,
-					name: name
-				}
-				var heroesIds = $localStorage.heroes.map(function(hero){
+			if($this.heroes.length>0){
+				var hero = Hero.create(heroData);
+				var heroesIds = $this.heroes.map(function(hero){
 					return hero.id;
 				})
-				
 				heroesIds = heroesIds.sort();
 				hero.id = heroesIds[heroesIds.length-1]+1;
-				$localStorage.heroes.push(hero);
+				$this.heroes.push(hero);
 				deferred.resolve({ status: 'success', data: angular.copy(hero) });
 			}
 			else{
@@ -33,11 +30,10 @@
 		heroService.delete = function(id){
 			var deferred = $q.defer();
 			var promise = deferred.promise;
-			if($localStorage.heroes){
-				$localStorage.heroes = $localStorage.heroes.filter(function(hero){
+			if($this.heroes.length>0){
+				$this.heroes = $this.heroes.filter(function(hero){
 					return hero.id !== id;
 				});
-
 				deferred.resolve({ status: 'success', message: 'Hero Removed', id: id });
 			}
 			else{
@@ -49,13 +45,15 @@
 		heroService.update = function(hero){
 			var deferred = $q.defer();
 			var promise = deferred.promise;
-			if($localStorage.heroes){
-				var storedHero = $localStorage.heroes.find(function(_hero){
-					return hero.id === _hero.id;
+			if($this.heroes.length>0){
+				var idMap = $this.heroes.map(function(hero){
+					return hero.id;
 				})
-				if(storedHero){
-					angular.copy(hero,storedHero);
-					deferred.resolve({ status: 'success', hero: angular.copy(storedHero) });
+				var index = idMap.indexOf(hero.id);
+
+				if(index>-1){
+					$this.heroes[index] = hero;
+					deferred.resolve({ status: 'success', hero: hero });
 				}
 				else{
 					deferred.reject({ status: 'error', message: 'No Hero Found'});
@@ -76,7 +74,7 @@
 					return hero.id === id;
 				})
 				if(hero){
-					deferred.resolve(angular.copy(hero));
+					deferred.resolve(hero);
 				}
 				else{
 					deferred.reject({ status: 'error', message: 'Hero Not Found!'});
@@ -87,13 +85,11 @@
 		}
 
 		heroService.getHeroes = function(){
-			
 			var deferred = $q.defer();
 			var promise = deferred.promise;
-			
-			if($localStorage.heroes && $localStorage.heroes.length>0){
-				heroes = angular.copy($localStorage.heroes);
-				deferred.resolve(heroes);
+
+			if($this.heroes.length>0){
+				deferred.resolve($this.heroes);
 			}
 			else{
 				var req = {
@@ -102,8 +98,8 @@
 					headers: heroesHeaders
 				}
 				$http(req).then(function(response){
-					$localStorage.heroes = response.data;
-					deferred.resolve(angular.copy(response.data));
+					$this.heroes = Hero.create(response.data);
+					deferred.resolve($this.heroes);
 				},
 				function(error){
 					deferred.reject([]);
@@ -112,14 +108,9 @@
 
 			return promise;
 		}
-		
-		
-
 		return heroService;
 	} // end HeroService
 
-
-
-	angular.module('tourOfHeroesApp').factory('heroService',['$http','$q','$localStorage',HeroService]);
+	angular.module('tourOfHeroesApp').factory('heroService',['$http','$q','Hero',HeroService]);
 
 })(window.angular);

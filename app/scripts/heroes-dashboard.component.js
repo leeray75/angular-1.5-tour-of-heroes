@@ -1,21 +1,27 @@
 (function(){
 	function controller($scope,heroService){
 		var ctrl = this;
-		ctrl.heroes = [];
+		ctrl.topHeroes = [];
+		ctrl.newHeroes = [];
 		this.$onInit = function(){
 			heroService.getHeroes().then(function(data){
-				var heroes = data;
-				ctrl.heroes = heroes.splice(1,4);
+				var topHeroes = angular.copy(data);
+				ctrl.topHeroes = topHeroes.splice(1,4);
+				var newHeroes = angular.copy(data);
+				newHeroes.sort(function(hero1,hero2){
+					return hero2.id - hero1.id;
+				})
+				ctrl.newHeroes = newHeroes.slice(0,4);
 			})
 		}
-		ctrl.add = function(prop,value){
-			var name = value.trim();
+		ctrl.add = function(prop,hero){
+			console.log("arguments:",arguments);
+			var name = hero.name;
 			if(!name){ return; }
-			heroService.create(name).then(function(response){
+			heroService.create(hero).then(function(response){
 				var hero = response.data;
-				ctrl.heroes.pop();
-				ctrl.heroes.unshift(hero);
-				ctrl.selectedHero == null;
+				ctrl.newHeroes.pop();
+				ctrl.newHeroes.unshift(hero);
 			})
 			ctrl.heroName = "";
 		}

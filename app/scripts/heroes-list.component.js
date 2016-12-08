@@ -11,8 +11,7 @@
 			};
 			function getHeroes(){
 				heroService.getHeroes().then(function(data){
-					var heroes = data;
-					ctrl.heroes = heroes;
+					ctrl.heroes = data;
 				})
 			}
 
@@ -21,11 +20,9 @@
 			}
 			ctrl.delete = function(hero){
 				heroService.delete(hero.id).then(function(response){
-					var id = response.id;
-					ctrl.heroes = ctrl.heroes.filter(function(hero){
-						return hero.id !== id;
+					ctrl.heroes = ctrl.heroes.filter(function(_hero){
+						return hero.id !== _hero.id;
 					});
-
 				},
 				function(error){
 					console.warn("delete error:",error);
