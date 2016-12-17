@@ -4,7 +4,6 @@
 		var ctrl = this;
 			ctrl.heroes = [];
 			ctrl.selectedHero = null;
-			ctrl.heroName = '';
 
 			function getHeroes(){
 				HeroesApiFactory.getHeroes().then(function(data){
@@ -16,7 +15,6 @@
 				ctrl.selectedHero = hero;
 			}
 			ctrl.delete = function(hero){
-				console.log("delete hero: ", hero);
 				HeroesApiFactory.delete(hero.id).then(function(heroes){
 					ctrl.heroes = heroes;
 				},
