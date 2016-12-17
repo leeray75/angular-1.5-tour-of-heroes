@@ -67,6 +67,7 @@
 		api.getHero = function(id){
 			var deferred = $q.defer();
 			var promise = deferred.promise;
+			id = parseInt(id);
 			this.getHeroes().then(function(heroes){
 				var hero = heroes.find(function(hero){
 					return hero.id === id;
@@ -79,7 +80,6 @@
 				}
 			})
 			return promise;
-
 		}
 
 		api.getHeroes = function(){

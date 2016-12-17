@@ -16,7 +16,10 @@
 		var heroDetailsState = {
 			name: 'hero-details',
 			url: '/hero-details/:id',
-			template: '<hero-details id="hero-details"></hero-details>'
+			template: '<hero-details id="hero-details" hero-id="heroId"></hero-details>',
+			controller: ['$scope','$stateParams',function($scope,$stateParams){
+				$scope.heroId = $stateParams.id;
+			}]
 		}
 
 		$stateProvider.state(dashboardState);
