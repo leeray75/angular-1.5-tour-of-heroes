@@ -20,8 +20,8 @@
 		}
 		ctrl.save = function(param,hero){
 			if(hero && hero.id){
-				HeroesApiFactory.update(hero).then(function(response){
-					ctrl.hero = response.hero;
+				HeroesApiFactory.update(hero).then(function(hero){
+					ctrl.hero = hero;
 				},
 				function(error){
 					console.warn("failed to save hero",error)

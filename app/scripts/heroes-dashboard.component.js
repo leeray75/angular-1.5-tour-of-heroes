@@ -18,8 +18,7 @@
 		ctrl.add = function(prop,hero){
 			var name = hero.name;
 			if(!name){ return; }
-			HeroesApiFactory.create(hero).then(function(response){
-				var hero = response.data;
+			HeroesApiFactory.create(hero).then(function(hero){
 				if(ctrl.newHeroes.length>3){
 					ctrl.newHeroes.pop();
 				}

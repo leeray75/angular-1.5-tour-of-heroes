@@ -19,10 +19,9 @@
 				ctrl.selectedHero = hero;
 			}
 			ctrl.delete = function(hero){
-				HeroesApiFactory.delete(hero.id).then(function(response){
-					ctrl.heroes = ctrl.heroes.filter(function(_hero){
-						return hero.id !== _hero.id;
-					});
+				console.log("delete hero: ", hero);
+				HeroesApiFactory.delete(hero.id).then(function(heroes){
+					ctrl.heroes = heroes;
 				},
 				function(error){
 					console.warn("delete error:",error);
