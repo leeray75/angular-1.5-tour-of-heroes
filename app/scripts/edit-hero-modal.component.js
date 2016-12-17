@@ -1,6 +1,6 @@
 (function(angular){
 "use strict";
-	function editHeroModalController($scope,$element,$attrs,$uibModal,$document,heroService){
+	function editHeroModalController($scope,$element,$attrs,$uibModal,$document){
 		var ctrl = this;
 		var open = function(){
 			var parentElem = angular.element($document[0].querySelector('.modal-container')) ;
@@ -56,7 +56,7 @@
 	angular.module('tourOfHeroesApp')
 	.component('editHeroModal',{
 		templateUrl: 'templates/edit-hero-modal.html',
-		controller: ['$scope','$element','$attrs','$uibModal','$document','heroService',editHeroModalController],
+		controller: ['$scope','$element','$attrs','$uibModal','$document',editHeroModalController],
 		bindings: {
 			edit: '=',
 			hero: '<',

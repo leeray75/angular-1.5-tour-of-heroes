@@ -1,11 +1,11 @@
 (function(angular){
 "use strict";
-	function controller($scope,heroService){
+	function controller($scope,HeroesApiFactory){
 		var ctrl = this;
 		ctrl.topHeroes = [];
 		ctrl.newHeroes = [];
 		this.$onInit = function(){
-			heroService.getHeroes().then(function(data){
+			HeroesApiFactory.getHeroes().then(function(data){
 				var topHeroes = angular.copy(data);
 				ctrl.topHeroes = topHeroes.splice(1,4);
 				var newHeroes = angular.copy(data);
@@ -16,12 +16,16 @@
 			})
 		}
 		ctrl.add = function(prop,hero){
-			console.log("arguments:",arguments);
 			var name = hero.name;
 			if(!name){ return; }
-			heroService.create(hero).then(function(response){
+			HeroesApiFactory.create(hero).then(function(response){
 				var hero = response.data;
-				ctrl.newHeroes.pop();
+				if(ctrl.newHeroes.length>3){
+					ctrl.newHeroes.pop();
+				}
+				if(ctrl.topHeroes.length<4){
+					ctrl.topHeroes.push(hero);
+				}
 				ctrl.newHeroes.unshift(hero);
 			})
 			ctrl.heroName = "";
@@ -31,7 +35,7 @@
 	angular.module('tourOfHeroesApp')
 	.component('heroesDashboard',{
 		templateUrl: 'templates/heroes-dashboard.html',
-		controller: ['$scope','heroService',controller]
+		controller: ['$scope','HeroesApiFactory',controller]
 	});
 
 })(window.angular);

@@ -1,6 +1,6 @@
 (function(angular){
 "use strict";
-	function controller($scope,$element,$attrs,$state,heroService){
+	function controller($scope,$element,$attrs,$state,HeroesApiFactory){
 		var ctrl = this;
 			ctrl.heroes = [];
 			ctrl.selectedHero = null;
@@ -10,7 +10,7 @@
 				name: ''
 			};
 			function getHeroes(){
-				heroService.getHeroes().then(function(data){
+				HeroesApiFactory.getHeroes().then(function(data){
 					ctrl.heroes = data;
 				})
 			}
@@ -19,7 +19,7 @@
 				ctrl.selectedHero = hero;
 			}
 			ctrl.delete = function(hero){
-				heroService.delete(hero.id).then(function(response){
+				HeroesApiFactory.delete(hero.id).then(function(response){
 					ctrl.heroes = ctrl.heroes.filter(function(_hero){
 						return hero.id !== _hero.id;
 					});
@@ -39,7 +39,7 @@
 					getHeroes();
 				}
 				else{
-					heroService.search(searchTerm)
+					HeroesApiFactory.search(searchTerm)
 					.then(function(response){
 						ctrl.heroes = response;
 					})
@@ -55,7 +55,7 @@
 	angular.module('tourOfHeroesApp')
 	.component('heroesList',{
 		templateUrl: 'templates/heroes-list.html',
-		controller: ['$scope','$element','$attrs','$state','heroService',controller]
+		controller: ['$scope','$element','$attrs','$state','HeroesApiFactory',controller]
 	});
 	
 

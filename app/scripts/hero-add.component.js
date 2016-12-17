@@ -1,18 +1,21 @@
 (function(angular){
 "use strict";
-	function controller(Hero){
+	function controller($scope,Hero){
 		var ctrl = this;
-		ctrl.newHero = Hero.create();
+		ctrl.newHero = {};
+		this.$onInit = function(){
+			ctrl.newHero = new Hero();
+		}
 		ctrl.save = function(){
 			ctrl.onSave({value: ctrl.newHero});
-			ctrl.newHero = Hero.create();
+			ctrl.newHero = new Hero();
 		}
 	}
 
 	angular.module('tourOfHeroesApp')
 	.component('heroAdd',{
 		templateUrl: 'templates/hero-add.html',
-		controller: ['Hero',controller],
+		controller: ['$scope','Hero',controller],
 		bindings: {
 			onSave: '&'
 		}

@@ -1,12 +1,12 @@
 (function(angular){
 "use strict";
-	function controller($scope,$state,heroService){	
+	function controller($scope,$state,HeroesApiFactory){	
 		var ctrl = this;
 		ctrl.hero = null;
 		ctrl.isEdit = false;
 		this.$onInit = function(){
 			var id = parseInt($state.params.id);
-			heroService.getHero(id).then(function(hero){
+			HeroesApiFactory.getHero(id).then(function(hero){
 				ctrl.hero = hero;
 			},
 			function(error){
@@ -21,7 +21,7 @@
 		}
 		ctrl.save = function(param,hero){
 			if(hero && hero.id){
-				heroService.update(hero).then(function(response){
+				HeroesApiFactory.update(hero).then(function(response){
 					ctrl.hero = response.hero;
 				},
 				function(error){
@@ -35,7 +35,7 @@
 	angular.module('tourOfHeroesApp')
 	.component('heroDetails',{
 		templateUrl: 'templates/hero-details.html',
-		controller: ['$scope','$state','heroService',controller]
+		controller: ['$scope','$state','HeroesApiFactory',controller]
 	});
 
 

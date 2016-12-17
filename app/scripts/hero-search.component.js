@@ -1,6 +1,6 @@
 (function(angular){
 "use strict";
-	function controller($scope,$document,$state,$timeout,heroService){
+	function controller($scope,$document,$state,$timeout,HeroesApiFactory){
 		var ctrl = this;
 		ctrl.heroes = [];
 		ctrl.searchTerm = '';
@@ -19,7 +19,7 @@
 						ctrl.heroes = [];
 					}
 					else{
-						heroService.search(ctrl.searchTerm)
+						HeroesApiFactory.search(ctrl.searchTerm)
 						.then(function(response){
 							ctrl.heroes = response;
 							$document.one('click',function(e){
@@ -41,7 +41,7 @@
 	angular.module('tourOfHeroesApp')
 	.component('heroSearch',{
 		templateUrl: 'templates/hero-search.html',
-		controller: ['$scope','$document','$state','$timeout','heroService',controller],
+		controller: ['$scope','$document','$state','$timeout','HeroesApiFactory',controller],
 		bindings: {
 			'showList': '<',
 			'onSearch': '&'
