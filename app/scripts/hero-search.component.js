@@ -7,10 +7,8 @@
 		ctrl.showList = (typeof(ctrl.showList)!=='undefined') ? ctrl.showList : true;
 		var searchTimeout = null;
 		ctrl.search = function(){
-			clearTimeout(searchTimeout);
 			$timeout.cancel(searchTimeout);
 			searchTimeout = $timeout(function(){
-				console.log("ctrl.showList",ctrl.showList)
 				if(!ctrl.showList){
 					ctrl.onSearch({value: ctrl.searchTerm});
 				}
