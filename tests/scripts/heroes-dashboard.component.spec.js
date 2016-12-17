@@ -1,18 +1,7 @@
 describe('component: heroesDashboard', function() {
-  var Hero,HeroesApiFactory,controller;
+  var Hero,HeroesApiFactory,controller,createHero;
   var $componentController,$q,$scope;
-  var mockHeroes = [
-        {"id": 11, "name": "Mr. Nice"},
-        {"id": 12, "name": "Narco"},
-        {"id": 13, "name": "Bombasto"},
-        {"id": 14, "name": "Celeritas"},
-        {"id": 15, "name": "Magneta"},
-        {"id": 16, "name": "RubberMan"},
-        {"id": 17, "name": "Dynama"},
-        {"id": 18, "name": "Dr IQ"},
-        {"id": 19, "name": "Magma"},
-        {"id": 20, "name": "Tornado"}
-    ];
+  var mockHeroes = window.HeroesData;
   beforeEach(angular.mock.module('tourOfHeroesApp'));
   beforeEach(inject(function(_Hero_,_HeroesApiFactory_,_$componentController_,_$q_,_$rootScope_) {
     $q = _$q_;
@@ -22,10 +11,16 @@ describe('component: heroesDashboard', function() {
     HeroesApiFactory = _HeroesApiFactory_;
   }));
   beforeEach(function(){
+      createHero = new Hero({ id: 100, name: 'New Hero'});
       controller = $componentController('heroesDashboard');
       spyOn(HeroesApiFactory, "getHeroes").and.callFake(function() {
           var deferred = $q.defer();
           deferred.resolve(mockHeroes);
+          return deferred.promise;
+      });
+      spyOn(HeroesApiFactory, "create").and.callFake(function() {
+          var deferred = $q.defer();
+          deferred.resolve(createHero);
           return deferred.promise;
       });
   });
@@ -49,6 +44,15 @@ describe('component: heroesDashboard', function() {
     expect(controller.newHeroes).toEqual(jasmine.any(Array));
     expect(controller.newHeroes.length).toEqual(4);
     expect(controller.newHeroes[0]).toEqual(mockHeroes[mockHeroes.length-1]);
+  });
+
+  it('create new hero should appear in newHeroes',function(){
+    controller.$onInit();
+    $scope.$digest();
+    controller.add("hero",createHero);
+    $scope.$digest();
+    expect(HeroesApiFactory.create).toHaveBeenCalledWith(createHero);
+    expect(controller.newHeroes[0]).toEqual(createHero);
   });
 
 });

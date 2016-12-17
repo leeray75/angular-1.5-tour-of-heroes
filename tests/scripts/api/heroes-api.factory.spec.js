@@ -2,18 +2,6 @@
 describe('HeroesApiFactory', function() {
   var HeroesApiFactory, Hero;
   var $q, $scope,$httpBackend;
-  var HeroesData = [
-      {"id": null, "name": "Mr. Nice", "location": "NYC"},
-      {"id": null, "name": "Narco"},
-      {"id": null, "name": "Bombasto"},
-      {"id": null, "name": "Celeritas"},
-      {"id": null, "name": "Magneta"},
-      {"id": null, "name": "RubberMan"},
-      {"id": null, "name": "Dynama"},
-      {"id": null, "name": "Dr IQ"},
-      {"id": null, "name": "Magma"},
-      {"id": null, "name": "Tornado"}
-    ]
   var originalTimeout;
   beforeEach(angular.mock.module('tourOfHeroesApp'));
   // Before each test set our injected Users factory (_Users_) to our local Users variable
@@ -22,7 +10,7 @@ describe('HeroesApiFactory', function() {
     Hero = _Hero_;
     $scope = _$rootScope_.$new();
     $httpBackend = _$httpBackend_;
-    initMockHeroesResource(HeroesData,$httpBackend);
+    initMockHeroesResource(window.HeroesData,$httpBackend);
   }));
 
   afterEach(function() {
